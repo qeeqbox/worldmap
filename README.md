@@ -3,7 +3,7 @@ An interactive world-map that has been used in live Cyber Threat interfaces. Thi
 If you are using the old qb-worldmap, please switch to the new version!
 
 ## Live
-[https://qeeqbox.github.io/worldmap/](https://qeeqbox.github.io/qb-worldmap/)
+[https://qeeqbox.github.io/worldmap/](https://qeeqbox.github.io/worldmap/)
 
 ## Invoke and Run
 ```html
