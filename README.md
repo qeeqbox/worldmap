@@ -35,7 +35,7 @@ qb_worldmap("#qb-worldmap-svg", null, ["156", "840"], window.innerHeight, window
 qb_worldmap.go_to_country("840")
 ```
 
-### get_current_subject()
+### qb_worldmap.get_current_subject()
 ```js
 get_current_subject()      This function will retrieve the current selected country
 ```
