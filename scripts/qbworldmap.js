@@ -11,7 +11,7 @@
 document.write('<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"><\/script>');
 document.write('<script type="text/javascript" src="https://d3js.org/topojson.v0.min.js"><\/script>');
 
-function qb_worldmap(svg, world_type, selected_countries, height, width, css_style, orginal_country_color, clicked_country_color, selected_country_color, location, verbose = false) {
+function qb_worldmap(svg_id, world_type, selected_countries, height, width, css_style, orginal_country_color, clicked_country_color, selected_country_color, location, verbose = false) {
   verbose && console.log("Init qb_worldmap")
 
   var qb_worldmap_style = `<style>
@@ -40,9 +40,9 @@ function qb_worldmap(svg, world_type, selected_countries, height, width, css_sty
   var projection = d3.geoOrthographic().translate([width / 2, height / 2]);
   var org_scale = projection.scale()
   var path = d3.geoPath(projection)
-  var svg = d3.select(svg).append("svg")
-    .attr("viewBox", "0 0 " + width + " " + height)
-    .attr("preserveAspectRatio", "xMinYMin");
+  var svg = d3.select(svg_id).append("svg")
+    .attr("height",height)
+    .attr("width",width)
   var graticule_lines = svg.append("path")
     .datum(d3.geoGraticule())
     .attr("class", "qb-worldmap-graticule")
@@ -126,7 +126,13 @@ function qb_worldmap(svg, world_type, selected_countries, height, width, css_sty
   }
 
   function size_changed() {
-    verbose && console.log("Size changed")
+    //width only
+    var _width = document.getElementById(svg_id.substring(1)).clientWidth
+    if (svg != null){
+      svg.attr("width",_width)
+      projection.translate([_width / 2, height / 2]);
+      svg.selectAll("path").attr("d", path)
+    }
   }
 
   function get_current_subject() {
